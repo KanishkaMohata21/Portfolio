@@ -1,7 +1,7 @@
 
 import Hero from "./Components/Hero";
 import Projects from "./Components/Projects";
-import Footer from "./Components/Footer";
+import Footer from "./Components/footer";
 import Navbar from "./Components/Navbar";
 import Certificates from "./Components/Certificate";
 import Skills from "./Components/Skills";
