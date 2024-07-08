@@ -52,7 +52,7 @@ const Skills = () => {
       <h2 className="text-3xl font-bold text-center mb-8" style={{ color: 'white' }}>Skills</h2>
       <div className="relative flex items-center justify-center">
         {startIndex > 0 && (
-          <button onClick={prevSkills} className="absolute left-0 p-2 bg-gray-800 text-white rounded-full">
+          <button onClick={prevSkills} className="absolute left-0 p-2 bg-gray-800 text-white rounded-full mr-4">
             &#9664;
           </button>
         )}
@@ -85,7 +85,7 @@ const Skills = () => {
           ))}
         </div>
         {(startIndex + skillsPerPage) < skills.length && (
-          <button onClick={nextSkills} className="absolute right-0 p-2 bg-gray-800 text-white rounded-full">
+          <button onClick={nextSkills} className="absolute right-0 p-2 bg-gray-800 text-white rounded-full ml-4">
             &#9654;
           </button>
         )}
