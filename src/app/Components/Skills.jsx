@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -18,7 +18,20 @@ const skills = [
 
 const Skills = () => {
   const [startIndex, setStartIndex] = useState(0);
-  const skillsPerPage = 5;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const skillsPerPage = isMobile ? 2 : 6;
 
   const visibleSkills = skills.slice(startIndex, startIndex + skillsPerPage);
 
@@ -43,7 +56,7 @@ const Skills = () => {
             &#9664;
           </button>
         )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className={`grid ${isMobile ? 'grid-cols-2' : 'grid-cols-6'} gap-6`}>
           {visibleSkills.map(skill => (
             <div key={skill.id} className="flex flex-col items-center">
               <div style={{ width: 100, height: 100, marginBottom: 20 }}>
@@ -71,7 +84,7 @@ const Skills = () => {
             </div>
           ))}
         </div>
-        {startIndex + skillsPerPage < skills.length && (
+        {(startIndex + skillsPerPage) < skills.length && (
           <button onClick={nextSkills} className="absolute right-0 p-2 bg-gray-800 text-white rounded-full">
             &#9654;
           </button>
