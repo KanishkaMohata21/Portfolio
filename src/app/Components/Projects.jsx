@@ -1,10 +1,11 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const Projects = () => {
   const [filter, setFilter] = useState(null); // State to store current filter
   const [startIndex, setStartIndex] = useState(0); // State to track starting index of displayed projects
+  const [isMobile, setIsMobile] = useState(false); // State to track if the viewport is mobile
 
   const projects = [
     { id: 1, stack: 'MERN', image: '/assets/Project1.png', title: 'KShop', description: 'An e-commerce platform with a focus on user-friendly shopping experience and secure transactions.', repoLink: 'https://github.com/KanishkaMohata21/Kshop' },
@@ -18,26 +19,38 @@ const Projects = () => {
     { id: 9, stack: 'Web3', image: '/assets/Project9.png', title: 'KrowdFund', description: 'A crowdfunding platform empowering individuals to raise funds for creative projects and charitable causes.', repoLink: 'https://github.com/KanishkaMohata21/Web3/tree/main/CrowdFund' },
   ];
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Filter projects based on selected stack
   const filteredProjects = filter ? projects.filter(project => project.stack === filter) : projects;
 
   // Determine visible projects
-  const visibleProjects = filteredProjects.slice(startIndex, startIndex + 3);
+  const projectsPerPage = isMobile ? 1 : 3;
+  const visibleProjects = filteredProjects.slice(startIndex, startIndex + projectsPerPage);
 
   // Check if there are projects to show on the left and right
-  const canShowNext = startIndex + 3 < filteredProjects.length;
+  const canShowNext = startIndex + projectsPerPage < filteredProjects.length;
   const canShowPrev = startIndex > 0;
 
   // Handlers for navigation
   const nextProjects = () => {
     if (canShowNext) {
-      setStartIndex(prevIndex => prevIndex + 3);
+      setStartIndex(prevIndex => prevIndex + projectsPerPage);
     }
   };
 
   const prevProjects = () => {
     if (canShowPrev) {
-      setStartIndex(prevIndex => prevIndex - 3);
+      setStartIndex(prevIndex => prevIndex - projectsPerPage);
     }
   };
 
@@ -76,19 +89,19 @@ const Projects = () => {
       {/* Project Display with navigation arrows */}
       <div className="relative flex items-center justify-center">
         <button className="arrow-btn prev" onClick={prevProjects} style={{ left: '10px', zIndex: '10', opacity: canShowPrev ? '1' : '0.5', pointerEvents: canShowPrev ? 'auto' : 'none' }}>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mr-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mr-1 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden w-full">
           {visibleProjects.map(project => (
-            <div key={project.id}>
+            <div key={project.id} className="w-full md:w-96 ms-200">
               <a
                 href={project.repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
-                style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '330px', background: 'linear-gradient(135deg, #fce7f3, #f6d6e2)', color: 'black' }} // Light pink gradient background and white text color
+                style={{ textDecoration: 'none', color: 'inherit', display: 'block', background: 'linear-gradient(135deg, #fce7f3, #f6d6e2)', color: 'black' }} // Light pink gradient background and white text color
               >
                 <Image
                   src={project.image}
@@ -107,7 +120,7 @@ const Projects = () => {
           ))}
         </div>
         <button className="arrow-btn next" onClick={nextProjects} style={{ right: '10px', zIndex: '10', opacity: canShowNext ? '1' : '0.5', pointerEvents: canShowNext ? 'auto' : 'none' }}>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 ml-1 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
           </svg>
         </button>
