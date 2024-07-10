@@ -95,13 +95,13 @@ const Projects = () => {
         </button>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden w-full">
           {visibleProjects.map(project => (
-            <div key={project.id} className="w-full md:w-96 ms-200">
+            <div key={project.id} className="w-full md:w-70 "> 
               <a
                 href={project.repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
-                style={{ textDecoration: 'none', color: 'inherit', display: 'block', background: 'linear-gradient(135deg, #fce7f3, #f6d6e2)', color: 'black' }} // Light pink gradient background and white text color
+                style={{ textDecoration: 'none', color: 'inherit', display: 'block', background: 'linear-gradient(135deg, #fce7f3, #f6d6e2)', color: 'black',height:'320px' }} // Light pink gradient background and white text color
               >
                 <Image
                   src={project.image}
