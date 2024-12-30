@@ -21,6 +21,12 @@ const certificates = [
       content: 'Intensive introduction to Python covering syntax, data structures, and functions.',
       imageUrl: '/assets/python.jpeg',
     },
+    {
+      id: 4,
+      name: 'Flutter & Dart - The Complete Guide [2024 Edition]',
+      content: ' I learned to build responsive UIs, manage state using Flutter.',
+      imageUrl: '/assets/flutter.jpeg',
+    },
 ];
 
 const Certificates = () => {
@@ -31,7 +37,8 @@ const Certificates = () => {
   };
 
   return (
-    <div className="certificates">
+    <div className='flex justify-center mx-auto'>
+    <div className="certificates flex justify-center mx-auto max-w-2xl">
       <h2 style={{ textAlign: 'center', marginBottom: '20px', color: 'white', fontSize: '30px', fontWeight: 'bolder', marginTop: '12px' }}>Certificates</h2>
       <div className="certificates-list">
         {certificates.map(({ id, name, content, imageUrl }) => (
@@ -52,6 +59,7 @@ const Certificates = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
       <style jsx>{`
         .certificates {

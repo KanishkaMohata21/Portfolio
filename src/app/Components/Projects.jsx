@@ -100,7 +100,7 @@ const Projects = () => {
                 href={project.repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
+                className="block rounded-lg shadow-md overflow-hidden transition-transform transform "
                 style={{ textDecoration: 'none', color: 'inherit', display: 'block', background: 'linear-gradient(135deg, #fce7f3, #f6d6e2)', color: 'black',height:'320px' }} // Light pink gradient background and white text color
               >
                 <Image

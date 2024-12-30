@@ -43,7 +43,7 @@ const Hero = () => {
             <a href="mailto:kanishkamohata21@gmail.com">Hire Me</a>
           </button>
           <button className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white border border-white">
-            <a href="/assets/KanishkaMohata (2).pdf">Download CV</a>
+            <a href="/assets/resume.pdf">Download CV</a>
           </button>
         </div>
       </div>

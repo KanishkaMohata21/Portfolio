@@ -14,6 +14,9 @@ const skills = [
   { id: 10, name: 'MongoDB', percentage: 85 },
   { id: 11, name: 'MySQL', percentage: 80 },
   { id: 12, name: 'Postgres', percentage: 75 },
+  { id: 13, name: 'React Native', percentage: 75 },
+  { id: 14, name: 'Flutter', percentage: 75 },
+  { id: 15, name: 'Next Js', percentage: 75 },
 ];
 
 const Skills = () => {
