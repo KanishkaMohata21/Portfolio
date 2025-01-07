@@ -50,7 +50,7 @@ const Hero = () => {
       <div className="col-span-5 flex justify-center md:justify-end">
         <div className="w-3/4 md:w-auto relative">
           <Image
-            src="/assets/KanishkaMohata.png"
+            src="/assets/profile.jpeg"
             alt="myimage"
             width={350}
             height={350}
