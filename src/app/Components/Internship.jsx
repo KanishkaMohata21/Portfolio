@@ -132,7 +132,7 @@ const InternshipSection = () => {
                   </motion.div>
 
                   {internship.company === "Technode" ? (
-                    <div>
+                    <div className = "text-white">
                       Currently Working
                     </div>
                   ) : (
